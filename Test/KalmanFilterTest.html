@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Kalman Filter Test</title>
+		<script src="../Math/Vector.js"></script>
+		<script src="../Math/Matrix.js"></script>
+		<script src="../Math/LUDecomposition.js"></script>
+		<script src="../Math/QRDecomposition.js"></script>
+		<script src="../Math/Matrix.opt.js"></script>
+		<script src="../Algorithm/KalmanFilter.js"></script>
+		<script type="text/javascript">
+			var kf = new KalmanFilter(4, 0, 2);
+			var dt = 0.03;
+			var fMat = Matrix.Create([
+							[1, 0, dt, 0],
+							[0, 1, 0, dt],
+							[0, 0, 1, 0],
+							[0, 0, 0, 1]
+						]);
+			var hMat = Matrix.Create([
+							[1, 0, 0, 0],
+							[0, 1, 0, 0]  
+						]);
+			kf.setF(fMat);
+			kf.setH(hMat);
+			kf.setQ(0.01);
+			kf.setR(0.01);
+			
+			kf.setX(Vector.Create(new Array(0, 0, 0, 0)));
+			
+			kf.setZ(Vector.Create(new Array(0, 0)));
+			
+			kf.predict();
+			
+			kf.update();
+
+			
+		</script>
+	</head>
+	<body>
+		<h1>Kalman Filter Test</h1>
+	</body>
+</html>
+

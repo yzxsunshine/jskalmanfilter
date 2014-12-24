@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>mouse kalman filter test</title>
+		<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+		<script src="../Math/Vector.js"></script>
+		<script src="../Math/Matrix.js"></script>
+		<script src="../Math/LUDecomposition.js"></script>
+		<script src="../Math/QRDecomposition.js"></script>
+		<script src="../Math/Matrix.opt.js"></script>
+		<script type="text/javascript" src="Algorithm/KalmanFilter.js"></script>
+		<script type="text/javascript">
+			var clicked = false;
+			var kf = new KalmanFilter(4, 0, 2);
+			
+			$(document).ready(function(){
+			  $("#startBtn").click(start);
+			  clicked = false;
+			  $("#testCanvas").mousemove(move);
+			  
+			});
+			function start() {
+				if(clicked == true) {
+					clicked = false;
+					$("#startBtn").text("Start"); 
+				}
+				else {
+					clicked = true;
+					$("#startBtn").text("End"); 
+				}
+			}
+			
+			function move(event) {
+				var pageCoords = "( " + event.pageX + ", " + event.pageY + " )";
+				$("#displayCanvas").text(pageCoords);
+			}
+		</script>
+	</head>
+	<body>
+		<h1>mouse kalman filter test</h1>
+		<div id="testCanvas" style="width:300px; height:300px; background:#22eeff"> </div>
+		<div id="displayCanvas" style="width:300px; height:20px; background:#eeeee" > </div>
+		<button id="startBtn">Start</button>
+	</body>
+</html>
+

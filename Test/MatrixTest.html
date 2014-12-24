@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>MatrixTest</title>
+		<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+		<script src="../Math/Vector.js"></script>
+		<script src="../Math/Matrix.js"></script>
+		<script type="text/javascript">
+			var mat = new Matrix(3, 3);
+			for(var i=0; i<3; i++) {
+				for(var j=0; j<3; j++) {
+					mat.set(i, j, i*3+j+1);
+				}	
+			}
+			
+			var str = "[set, get] - ";
+			for(var i=0; i<mat.getRows(); i++) {
+				for(var j=0; j<mat.getCols(); j++) {
+					str += mat.get(i, j) + " - ";
+				}	
+			}
+			alert(str);
+			
+			var vec = mat.getRow(0);
+			var vec1 = mat.getCol(0);
+			alert("[getRow]" + vec.get(0) + " - "+ vec.get(1) + " - " + vec.get(2));
+			alert("[getCol]" + vec1.get(0) + " - "+ vec1.get(1) + " - " + vec1.get(2));
+			
+			var mat1 = new Matrix(3, 3);
+			for(var i=0; i<3; i++) {
+				for(var j=0; j<3; j++) {
+					mat1.set(i, j, 0);
+				}	
+			}
+			mat1.setSubMatrix(0, 1, 0, 1, mat.getSubMatrix(1, 2, 1, 2));
+			str = "[setSubMatrix, getsubMatrix] - ";
+			for(var i=0; i<mat1.getRows(); i++) {
+				for(var j=0; j<mat1.getCols(); j++) {
+					str += mat1.get(i, j) + " - ";
+				}	
+			}
+			alert(str);
+			
+			var mat2 = mat.clone();
+			for(var i=0; i<mat2.getRows(); i++) {
+				for(var j=0; j<mat2.getCols(); j++) {
+					str += mat2.get(i, j) + " - ";
+				}	
+			}
+			var mat3 = mat2;
+			mat3.set(0, 0, 9);
+			mat3.set(1, 1, 9);
+			mat3.set(2, 2, 9);
+			str = "[not clone] - ";
+			for(var i=0; i<mat2.getRows(); i++) {
+				for(var j=0; j<mat2.getCols(); j++) {
+					str += mat2.get(i, j) + " - ";
+				}	
+			}
+			alert(str);
+			
+			var mat4 = mat.mul(mat1);
+			str = "[mul] - ";
+			for(var i=0; i<mat4.getRows(); i++) {
+				for(var j=0; j<mat4.getCols(); j++) {
+					str += mat4.get(i, j) + " - ";
+				}	
+			}
+			alert(str);
+			
+			var vec2 = mat.mul(vec);
+			var arr = new Array(1, 2, 3, 4, 5, 6, 7, 8, 9);
+			var mat5 = new Matrix(1, 1);
+			
+			str = "[reshape]";
+			mat5.reshape(arr, 3, 3);
+			for(var i=0; i<mat5.getRows(); i++) {
+				for(var j=0; j<mat5.getCols(); j++) {
+					str += mat5.get(i, j) + " - ";
+				}	
+			}
+			alert(str);
+			
+			str = "[copyData - Vector]";
+			mat5.copyData(vec);
+			for(var i=0; i<mat5.getRows(); i++) {
+				for(var j=0; j<mat5.getCols(); j++) {
+					str += mat5.get(i, j) + " - ";
+				}	
+			}
+			alert(str);
+			
+			str = "[copyData - Matrix]";
+			mat5.copyData(mat);
+			for(var i=0; i<mat5.getRows(); i++) {
+				for(var j=0; j<mat5.getCols(); j++) {
+					str += mat5.get(i, j) + " - ";
+				}	
+			}
+			alert(str);
+			
+			
+		</script>
+	</head>
+	<body>
+		<h1>Matrix Test</h1>
+	</body>
+</html>
+

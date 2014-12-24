@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Vector Test</title>
+		<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+		<script src="../Math/Vector.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var vec = new Vector(3);
+				vec.set(0, 1);
+				vec.set(1, 2);
+				vec.set(2, 3);
+				var vec1 = new Vector(3);
+				vec1.set(0, 4);
+				vec1.set(1, 5);
+				vec1.set(2, 6);
+				
+				var vec2 = vec.add(vec1);
+				alert("" + vec2.get(0) + " - "+ vec2.get(1) + " - " + vec2.get(2));
+				vec2 = vec.clone();
+				vec2.addToSelf(vec1);
+				alert("" + vec2.get(0) + " - "+ vec2.get(1) + " - " + vec2.get(2));
+				
+				vec2 = vec.minus(vec1);
+				alert("" + vec2.get(0) + " - "+ vec2.get(1) + " - " + vec2.get(2));
+				vec2 = vec.clone();
+				vec2.minusToSelf(vec1);
+				alert("" + vec2.get(0) + " - "+ vec2.get(1) + " - " + vec2.get(2));
+				
+				var dotVal = vec.dot(vec1);
+				alert("" + dotVal);
+				
+				var vec3 = vec2;
+				vec3.setSubVector(0, 1, vec.getSubVector(1, 2));
+				alert("" + vec2.get(0) + " - "+ vec2.get(1) + " - " + vec2.get(2));
+				
+				var vec4 = vec.cross(vec1);
+				alert("" + vec4.get(0) + " - "+ vec4.get(1) + " - " + vec4.get(2));
+				
+				var vec5 = vec.clone();
+				vec5.normalize();
+				alert("" + vec5.get(0) + " - "+ vec5.get(1) + " - " + vec5.get(2));
+			});
+		</script>
+	</head>
+	<body>
+		<h1>Vector Test</h1>
+		<div id="caca">haha</div>
+	</body>
+</html>
+

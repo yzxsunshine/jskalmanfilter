@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>MatrixTest</title>
+		<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+		<script src="../Math/Vector.js"></script>
+		<script src="../Math/Matrix.js"></script>
+		<script src="../Math/LUDecomposition.js"></script>
+		<script src="../Math/QRDecomposition.js"></script>
+		<script src="../Math/Matrix.opt.js"></script>
+		<script type="text/javascript">
+			var A = new Matrix(3, 3);
+			var arr = new Array(
+				[2, 1, 1],
+				[4, 4, 3],
+				[6, 7, 7]
+			);
+			A.copyData(arr);
+			
+			var det = A.det();
+			var AInv = A.inv();
+			alert(det);
+			alert(AInv.toString());
+		</script>
+	</head>
+	<body>
+		<h1>Matrix Test</h1>
+	</body>
+</html>
+
